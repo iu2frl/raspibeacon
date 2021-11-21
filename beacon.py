@@ -37,11 +37,11 @@ aprsTime = dateTimeObj.strftime("%H%M%S")
 cpuUsage = str(psutil.cpu_percent(4))
 
 # Get CPU Temperature
-cpuTemp = CPUTemperature()
+cpuTemp = str(CPUTemperature().temperature)
 
 # APRS packet
 callsign = 'IU2FRL'
-payload = '@' + aprsTime + 'z' + aprsLongitude + '/' + aprsLatitude + symbol + 'test python script ' + 'CPU: ' + cpuUsage + '%' + 'Temp: ' + cpuTemp + '°C'
+payload = '@' + aprsTime + 'z' + aprsLongitude + '/' + aprsLatitude + symbol + 'test python script ' + 'CPU: ' + cpuUsage + '%' + 'Temp: ' + cpuTemp + 'C'
 
 # create socket & connect to server
 sSock = socket(AF_INET, SOCK_STREAM)
