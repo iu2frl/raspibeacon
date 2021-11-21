@@ -19,16 +19,26 @@ from socket import *
 from datetime import datetime
 import psutil
 from gpiozero import CPUTemperature
+from pathlib import Path
 
 # APRS-IS login info
 serverHost = 'rotate.aprs2.net'
 serverPort = 14580
-aprsUser = 'IU2FRL-M1'
+aprsUser = 'IU2FRL'
+aprsSSID = '1'
 aprsPass = '23229'
 aprsLongitude = '4510.35N'
 aprsLatitude = '01047.11E'
 symbol = '?'
 comment = ''
+
+# Get SSID from file
+path_ssid = 'ssid.txt'
+path = Path(path_ssid)
+if path.is_file():
+    aprsSSID = open(path_ssid, "r").read()
+else:
+    print(f'Il file {path_ssid} non esiste, uso SSID impostato')
 
 # Get current time and date
 dateTimeObj = datetime.now()
@@ -41,12 +51,12 @@ cpuUsage = str(psutil.cpu_percent(4))
 cpuTemp = str(CPUTemperature().temperature)
 
 # APRS packet
-callsign = 'IU2FRL'
 payload = '@' + aprsTime + 'z' + aprsLongitude + '/' + aprsLatitude + symbol + comment + 'CPU: ' + cpuUsage + '%' + 'Temp: ' + cpuTemp + 'C'
 
 # create socket & connect to server
 sSock = socket(AF_INET, SOCK_STREAM)
 sSock.connect((serverHost, serverPort))
+aprsUser = aprsUser + '-' + aprsSSID
 # logon
 logonString = 'user ' + aprsUser + ' pass ' + aprsPass + ' vers KD7LXL-Python 0.1\n' 
 sSock.sendall(logonString.encode('utf-8'))
