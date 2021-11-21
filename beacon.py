@@ -25,7 +25,7 @@ from pathlib import Path
 serverHost = 'rotate.aprs2.net'
 serverPort = 14580
 aprsUser = 'IU2FRL'
-aprsSSID = '1'
+aprsSSID = 'M1'
 aprsPass = '23229'
 aprsLongitude = '4510.35N'
 aprsLatitude = '01047.11E'
@@ -33,12 +33,12 @@ symbol = '?'
 comment = ''
 
 # Get SSID from file
-path_ssid = 'ssid.txt'
-path = Path(path_ssid)
-if path.is_file():
-    aprsSSID = open(path_ssid, "r").read()
-else:
-    print(f'Il file {path_ssid} non esiste, uso SSID impostato')
+#path_ssid = 'ssid.txt'
+#path = Path(path_ssid)
+#if path.is_file():
+#    aprsSSID = open(path_ssid, "r").read()
+#else:
+#    print(f'Il file {path_ssid} non esiste, uso SSID impostato')
 
 # Get current time and date
 dateTimeObj = datetime.now()
