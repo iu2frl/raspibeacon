@@ -28,6 +28,7 @@ aprsPass = '23229'
 aprsLongitude = '4510.35N'
 aprsLatitude = '01047.11E'
 symbol = '?'
+comment = ''
 
 # Get current time and date
 dateTimeObj = datetime.now()
@@ -41,7 +42,7 @@ cpuTemp = str(CPUTemperature().temperature)
 
 # APRS packet
 callsign = 'IU2FRL'
-payload = '@' + aprsTime + 'z' + aprsLongitude + '/' + aprsLatitude + symbol + 'test python script ' + 'CPU: ' + cpuUsage + '%' + 'Temp: ' + cpuTemp + 'C'
+payload = '@' + aprsTime + 'z' + aprsLongitude + '/' + aprsLatitude + symbol + comment + 'CPU: ' + cpuUsage + '%' + 'Temp: ' + cpuTemp + 'C'
 
 # create socket & connect to server
 sSock = socket(AF_INET, SOCK_STREAM)
